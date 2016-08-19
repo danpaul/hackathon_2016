@@ -82,7 +82,7 @@ question_id = '';
 isPaused = false;
 $("#question-form").submit(function(){
     $('#form-overlay').fadeIn();
-    window.setInterval(function(){
+    var my_question_int = window.setInterval(function(){
         jQuery.ajax({
             url: 'api/index.php?method=hasquestion&user='+username,
             type: 'GET',
@@ -96,6 +96,7 @@ $("#question-form").submit(function(){
                     $('#question h1');
                     question_id = data.id;
                     isPaused = true;
+                    clearInterval(my_question_int);
                     //console.log(question_id);
                     jQuery.ajax({
                         url: 'questions.json',
@@ -138,8 +139,7 @@ appearin_popped = false;
 //submit answers
 $('.answers a').click(function(){
     var answer_num = $(this).data('answer');
-    $('.answers a').hide();
-    $('#question h1').hide();
+    $('#question').hide();
    // console.log('api/index.php?user='+username+'&question='+question_id+'&answer='+answer_num+'&method=answerquestion');
     jQuery.ajax({
         url: 'api/index.php?user='+username+'&question='+question_id+'&answer='+answer_num+'&method=answerquestion',
@@ -168,6 +168,7 @@ $('.answers a').click(function(){
                                 appearin_popped = true;
                                 console.log('MATCH!');
                                 window.open(data.appearin);
+                                location.reload();
                             }
                             else {
                                 clearInterval(my_int);
@@ -184,6 +185,7 @@ $('.answers a').click(function(){
                                         $('#intro').show();
                                         isPaused = false;
                                         appearin_popped = false;
+                                        location.reload();
                                     },
                                     error: function(){
                                         console.log('failed to create user');
@@ -197,6 +199,7 @@ $('.answers a').click(function(){
                     },
                     error: function(){
                         console.log('failed to find answers');
+                        location.reload();
                     },
                     complete: function(){
                         //console.log('done');
