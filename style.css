@@ -61,7 +61,7 @@ body {
     background: #333;
     margin: 0;
 }
-#wrapper {
+.wrapper {
     background: #1f1f1f;
     margin: 30px;
     padding: 20px;
@@ -84,6 +84,28 @@ input[type=submit]{
     background: -webkit-linear-gradient(top, #fffe06 0%,#ffc62d 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #fffe06 0%,#ffc62d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffe06', endColorstr='#ffc62d',GradientType=0 ); /* IE6-9 */
+}
+
+form {
+    position: relative;
+}
+#form-overlay {
+    display: none;
+    position: absolute;
+    background: #1f1f1f;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+    top: 0;
+}
+
+#question {
+    display: none;
+}
+
+.answers a {
+    font-size: 20px;
 }
 
 /* Type */
