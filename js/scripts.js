@@ -167,8 +167,9 @@ $('.answers a').click(function(){
                                 clearInterval(my_int);
                                 appearin_popped = true;
                                 console.log('MATCH!');
-                                window.open(data.appearin);
-                                location.reload();
+                                window.location = data.appearin;
+                                //window.open(data.appearin);
+                                //location.reload();
                             }
                             else {
                                 clearInterval(my_int);
