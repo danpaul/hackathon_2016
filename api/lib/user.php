@@ -6,6 +6,7 @@ function user_create(){
 	$user['last_checked'] = time();
 	$user['long'] = 0.0;
 	$user['lat'] = 0.0;
+	$user['paused'] = false;
 	return $user;
 }
 

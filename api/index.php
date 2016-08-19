@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 require_once (dirname(__FILE__). '/lib/index.php');
 
 $users = data_get('user');
+$users = data_get('user');
 
 $method = $_GET['method'];
 
@@ -31,4 +32,7 @@ if( $method === 'create' ){
 	user_update_position($users, $user, $_GET['lat'], $_GET['long']);
 
 	echo json_encode(new stdClass);
+// /api/index.php?method=hasquestion
+} elseif( $method === 'hasquestion' ){
+	
 }
