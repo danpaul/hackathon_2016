@@ -4,11 +4,16 @@ function question_user_get(&$users, $user, &$user_questions, &$questions, $quest
 	$u = $users[$user];
 
 	// check if user if user is paused, return false if so
-	if( $u['paused'] ){ return new stdClass; }
+	// if( $u['paused'] ){ return new stdClass; }
+
+// var_dump($user_questions);
+// die();
 
 	// check if question exist for user and return question if so
-	foreach( $user_questions as $question_id => $question) {
+	foreach( $questions as $question_id => $question) {
 		foreach( $question['answers'] as $user_id => $value) {
+// var_dump($user_id);
+// die();
 			if( $user_id === $user ){
 				return $question;
 			}

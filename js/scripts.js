@@ -26,8 +26,8 @@ function user_location() {
         navigator.geolocation.getCurrentPosition(function(position) {
             user_lat = position.coords.latitude;
             user_long = position.coords.longitude;
-            console.log('lat: '+ user_lat);
-            console.log('long' + user_long);
+           // console.log('lat: '+ user_lat);
+           // console.log('long' + user_long);
             $('input#lat').val(user_lat);
             $('input#long').val(user_long);
             jQuery.ajax({
@@ -78,6 +78,7 @@ function poll_for_question(){
 //start question process
 appearin = '';
 question = '';
+question_id = '';
 $("#question-form").submit(function(){
     $('#form-overlay').fadeIn();
     window.setInterval(function(){
@@ -91,6 +92,9 @@ $("#question-form").submit(function(){
                 if(!jQuery.isEmptyObject(data)){
                     appearin = data.appearin;
                     question_num = data.question_number;
+                    $('#question h1');
+                    question_id = data.id;
+                    console.log(question_id);
                     jQuery.ajax({
                         url: 'questions.json',
                         type: 'GET',
@@ -100,10 +104,10 @@ $("#question-form").submit(function(){
                             console.log(data[question_num]);
                             $('#intro').hide();
                             $('#question h1').text(data[question_num]['question'] + '...');
-                            $('.answer-0').addClass('twa-'+data[question_num]['answers'][0]).data('question-number',question_num);
-                            $('.answer-1').addClass('twa-'+data[question_num]['answers'][1]).data('question-number',question_num);
-                            $('.answer-2').addClass('twa-'+data[question_num]['answers'][2]).data('question-number',question_num);
-                            $('.answer-3').addClass('twa-'+data[question_num]['answers'][3]).data('question-number',question_num);
+                            $('.answer-0').addClass('twa-'+data[question_num]['answers'][0]);
+                            $('.answer-1').addClass('twa-'+data[question_num]['answers'][1]);
+                            $('.answer-2').addClass('twa-'+data[question_num]['answers'][2]);
+                            $('.answer-3').addClass('twa-'+data[question_num]['answers'][3]);
                             $('#question').show();
                         },
                         error: function(){
@@ -124,4 +128,26 @@ $("#question-form").submit(function(){
         });
     }, 5000);
     return false;
+});
+
+//submit answers
+$('.answers a').click(function(){
+    var answer_num = $(this).data('answer');
+    $('.answers a').hide();
+    console.log('api/index.php?user='+username+'&question='+question_id+'&answer='+answer_num+'method=answerquestion');
+    jQuery.ajax({
+        url: 'api/index.php?user='+username+'&question='+question_id+'&answer='+answer_num+'method=answerquestion',
+        type: 'GET',
+        dataType: 'json',
+        data: {},
+        success: function (data) {
+            console.log(data);
+        },
+        error: function(){
+            console.log('failed to answer question');
+        },
+        complete: function(){
+            //console.log('done');
+        }
+    });
 });

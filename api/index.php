@@ -39,12 +39,18 @@ if( $method === 'create' ){
 // /api/index.php?method=hasquestion&user=...
 } elseif( $method === 'hasquestion' ){
 
+// die('asfdasdfasdf');
+
 	$user = $_GET['user'];
 
 	if( empty($users) || empty($users[$user]) ){
 		echo json_encode(array('error' => 'Could not find user, please refresh!'));
 		return;
 	}
+
+// var_dump($userQuestions);
+// echo('asfdasdfasdfasdf');
+// die('fooooo');
 
 	$result = question_user_get($users, $user, $userQuestions, $questions, $questionCopy);
 	echo json_encode($result);
