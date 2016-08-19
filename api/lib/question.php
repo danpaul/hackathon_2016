@@ -64,8 +64,6 @@ function question_user_get(&$users, $user, &$user_questions, &$questions, $quest
 
 	data_set('question', $questions);
 
-// die();
-
 	// pause both users
 	$users[$user]['paused'] = true;
 	$users[$matched_user['user_name']]['paused'] = true;
@@ -82,4 +80,25 @@ function question_create(&$user_questions, &$questions, $question_copy){
 	$random_question = rand(0, ($number_of_questions - 1));
 
 	$question['question_number'] = $random_question;
+}
+
+function question_answer(&$questions, $question_id, $user_name, $answer){
+	$questions[$question_id]['answers'][$user_name] = $answer;
+	data_set('question', $questions);
+}
+
+function quesiton_remove_users($user_questions, $user){
+	$clean_questions = array();
+	foreach( $user_questions as $question_id => $question) {
+		$match = false;
+		foreach( $question['answers'] as $user_id => $value) {
+			if( $user_id === $user ){
+				$match = true;
+			}
+		}
+		if( !$match ){
+			$clean_questions[$question_id] = $question;
+		}
+	}
+	data_set('question', $clean_questions);
 }

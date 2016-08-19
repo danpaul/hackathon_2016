@@ -62,6 +62,10 @@ if( $method === 'create' ){
 	}
 
 	user_unpause($users, $user);
+
+	quesiton_remove_users($questions, $user);
+
+
 	echo json_encode(new stdClass);
 // /api/index.php?method=getquestion&question=...
 } elseif( $method === 'getquestion' ){
@@ -72,5 +76,6 @@ if( $method === 'create' ){
 	echo(json_encode($questions[$_GET['question']]));
 // /api/index.php?user=...&question=...&answer=....method=answerQuestion&question=...
 } elseif( $method === 'answerquestion' ){
-	
+	question_answer($questions, $_GET['question'], $_GET['user'], $_GET['answer']);
+	echo json_encode(new stdClass);
 }
