@@ -163,7 +163,7 @@ $('.answers a').click(function(){
                         var answer_2 = dataarray[1];
                         if(answer_1 !== null && answer_2!== null){
                             if(answer_1 == answer_2){
-                                alert('MATCH!');
+                                console.log('MATCH!');
                                 window.open(data.appearin);
                             }
                             else {
