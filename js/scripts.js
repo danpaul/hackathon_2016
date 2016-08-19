@@ -111,6 +111,7 @@ $("#question-form").submit(function(){
                             $('.answer-2').addClass('twa-'+data[question_num]['answers'][2]);
                             $('.answer-3').addClass('twa-'+data[question_num]['answers'][3]);
                             $('#question').show();
+                            $('#form-overlay').hide();
                         },
                         error: function(){
                             console.log('failed get question');
@@ -148,7 +149,7 @@ $('.answers a').click(function(){
         success: function (data) {
             console.log(data);
             
-            window.setInterval(function(){
+            var my_int = window.setInterval(function(){
                 jQuery.ajax({
                     url: 'api/index.php?method=getquestion&question='+question_id,
                     type: 'GET',
@@ -163,12 +164,13 @@ $('.answers a').click(function(){
                         var answer_2 = dataarray[1];
                         if(answer_1 !== null && answer_2!== null){
                             if(answer_1 == answer_2 && appearin_popped == false){
+                                clearInterval(my_int);
                                 appearin_popped = true;
                                 console.log('MATCH!');
                                 window.open(data.appearin);
                             }
                             else {
-                                
+                                clearInterval(my_int);
                                 
                                 jQuery.ajax({
                                     url: 'api/index.php?method=unpause&user='+username,
@@ -178,8 +180,10 @@ $('.answers a').click(function(){
                                     success: function (data) {
                                         $('#question').hide();
                                         $('#question h1').text('');
+                                        $('#form-overlay').hide();
                                         $('#intro').show();
                                         isPaused = false;
+                                        appearin_popped = false;
                                     },
                                     error: function(){
                                         console.log('failed to create user');
