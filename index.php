@@ -46,7 +46,7 @@
             <a href="javascript:void(0)" class="answer-3 twa" data-answer="3" data-question-number=""></a>
         </div>
     </div>
-    
+    <script type='text/javascript' src='js/vendor/underscore.js'></script>
     <script type='text/javascript' src='js/vendor/jquery.form.js'></script>
     <script type='text/javascript' src='js/vendor/jquery.validate.min.js'></script>
     <script type='text/javascript' src='js/scripts.js?v=<?php echo round(microtime(true) * 1000); ?>'></script>
