@@ -105,7 +105,10 @@ form {
 }
 
 .answers a {
-    font-size: 20px;
+    font-size: 50px;
+    width: 36%;
+    background-position: center top;
+    margin-bottom: 10px;
 }
 
 /* Type */

@@ -40,10 +40,10 @@
     <div class="wrapper" id="question">
         <h1></h1>
         <div class="answers">
-            <a href="javascript:void(0)" class="answer-0 twa"></a>
-            <a href="javascript:void(0)" class="answer-1 twa"></a>
-            <a href="javascript:void(0)" class="answer-2 twa"></a>
-            <a href="javascript:void(0)" class="answer-3 twa"></a>
+            <a href="javascript:void(0)" class="answer-0 twa" data-answer="0" data-question-number=""></a>
+            <a href="javascript:void(0)" class="answer-1 twa" data-answer="1" data-question-number=""></a>
+            <a href="javascript:void(0)" class="answer-2 twa" data-answer="2" data-question-number=""></a>
+            <a href="javascript:void(0)" class="answer-3 twa" data-answer="3" data-question-number=""></a>
         </div>
     </div>
     
