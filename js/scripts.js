@@ -71,10 +71,26 @@ window.setInterval(function(){
     user_location();
 }, 5000);
 
-
+function poll_for_question(){
+    jQuery.ajax({
+        url: 'api/index.php?method=hasquestion&user='+username,
+        type: 'GET',
+        dataType: 'json',
+        data: {},
+        success: function (data) {
+            return data;
+        },
+        error: function(){
+            console.log('failed to create user');
+        },
+        complete: function(){
+            //console.log('done');
+        }
+    });
+}
 
 //start question process
 $("#question-form").submit(function(){
-    console.log(username);
+    console.log(poll_for_question());
     return false;
 });

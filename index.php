@@ -1,3 +1,9 @@
+<?php
+    if($_SERVER['HTTP_HOST'] !== 'localhost' && $_SERVER["HTTP_X_FORWARDED_PROTO"] != "https"){
+        header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7" lang="en" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
 <!--[if IE 7]><html class="lt-ie9 lt-ie8" lang="en" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
@@ -20,12 +26,13 @@
 <body>
     
     <div id="wrapper">
-        <h1>You're a Loser</h1>
-        <p>Make a friend and stop being lame.</p>
+        <p>WANT TO MAKE A FRIEND?</p>
+        <h1>React and be matched to people near you</h1>
+        
         <form id="question-form" name="question-form">
             <input type="hidden" name="lat" id="lat" value="" />
             <input type="hidden" name="long" id="long" value="" />
-            <input type="submit" name="submit" id="submit" value="Get me a question!" />
+            <input type="submit" name="submit" id="submit" value="READY TO RANDOJI" />
         </form>
     </div>
     

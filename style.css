@@ -1,0 +1,98 @@
+@import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed';
+
+article, 
+aside, 
+details, 
+figcaption, 
+figure, 
+footer, 
+header, 
+hgroup, 
+nav, 
+section {
+	display: block;
+}
+audio, 
+canvas, 
+video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+audio:not([controls]) {
+	display: none;
+}
+[hidden] {
+	display: none;
+}
+
+html { 
+	font-size: 100%; 
+	-webkit-text-size-adjust: 100%; 
+	-ms-text-size-adjust: 100%; 
+	font-size: 1em;
+	-webkit-font-smoothing: antialiased;
+}
+img, object, embed, table, iframe {
+	max-width: 100%;
+}
+img {
+	height: auto;
+}
+img, a img {
+	border: 0;
+}
+body, html {
+	margin: 0;
+}
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout */
+
+body {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    color: #fff;
+    background: #333;
+    margin: 0;
+}
+#wrapper {
+    background: #1f1f1f;
+    margin: 30px;
+    padding: 20px;
+    box-shadow: 0px 2px 7px #1f1f1f;
+}
+
+input[type=submit]{
+    height: 40px;
+    width: 100%;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-transform: uppercase;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    padding: 0;
+    font-size: 14px;
+    border-radius: 30px;
+    background: #fffe06; /* Old browsers */
+    background: -moz-linear-gradient(top, #fffe06 0%, #ffc62d 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #fffe06 0%,#ffc62d 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #fffe06 0%,#ffc62d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffe06', endColorstr='#ffc62d',GradientType=0 ); /* IE6-9 */
+}
+
+/* Type */
+
+h1 {
+    margin: 0 0 30px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+p {
+    margin: 0;
+}
