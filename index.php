@@ -25,7 +25,7 @@
 
 <body>
     
-    <div id="wrapper">
+    <div class="wrapper" id="intro">
         <p>WANT TO MAKE A FRIEND?</p>
         <h1>React and be matched to people near you</h1>
         
@@ -33,7 +33,18 @@
             <input type="hidden" name="lat" id="lat" value="" />
             <input type="hidden" name="long" id="long" value="" />
             <input type="submit" name="submit" id="submit" value="READY TO RANDOJI" />
+            <div id="form-overlay">Finding something to react to...</div>
         </form>
+    </div>
+    
+    <div class="wrapper" id="question">
+        <h1></h1>
+        <div class="answers">
+            <a href="javascript:void(0)" class="answer-0 twa"></a>
+            <a href="javascript:void(0)" class="answer-1 twa"></a>
+            <a href="javascript:void(0)" class="answer-2 twa"></a>
+            <a href="javascript:void(0)" class="answer-3 twa"></a>
+        </div>
     </div>
     
     <script type='text/javascript' src='js/vendor/jquery.form.js'></script>

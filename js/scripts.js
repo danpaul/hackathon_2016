@@ -72,25 +72,56 @@ window.setInterval(function(){
 }, 5000);
 
 function poll_for_question(){
-    jQuery.ajax({
-        url: 'api/index.php?method=hasquestion&user='+username,
-        type: 'GET',
-        dataType: 'json',
-        data: {},
-        success: function (data) {
-            return data;
-        },
-        error: function(){
-            console.log('failed to create user');
-        },
-        complete: function(){
-            //console.log('done');
-        }
-    });
+    
 }
 
 //start question process
+appearin = '';
+question = '';
 $("#question-form").submit(function(){
-    console.log(poll_for_question());
+    $('#form-overlay').fadeIn();
+    window.setInterval(function(){
+        jQuery.ajax({
+            url: 'api/index.php?method=hasquestion&user='+username,
+            type: 'GET',
+            dataType: 'json',
+            data: {},
+            success: function (data) {
+                console.log(data);
+                if(!jQuery.isEmptyObject(data)){
+                    appearin = data.appearin;
+                    question_num = data.question_number;
+                    jQuery.ajax({
+                        url: 'questions.json',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {},
+                        success: function (data) {
+                            console.log(data[question_num]);
+                            $('#intro').hide();
+                            $('#question h1').text(data[question_num]['question'] + '...');
+                            $('.answer-0').addClass('twa-'+data[question_num]['answers'][0]);
+                            $('.answer-1').addClass('twa-'+data[question_num]['answers'][1]);
+                            $('.answer-2').addClass('twa-'+data[question_num]['answers'][2]);
+                            $('.answer-3').addClass('twa-'+data[question_num]['answers'][3]);
+                            $('#question').show();
+                        },
+                        error: function(){
+                            console.log('failed get question');
+                        },
+                        complete: function(){
+                            //console.log('done');
+                        }
+                    });
+                }
+            },
+            error: function(){
+                console.log('failed to poll for question');
+            },
+            complete: function(){
+                //console.log('done');
+            }
+        });
+    }, 5000);
     return false;
 });
