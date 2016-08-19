@@ -26,3 +26,7 @@ Temporary Items
 .apdisk
 
 /api/data
+/api/data/*.*
+
+/api/data/user.json
+/api/data/question.json
