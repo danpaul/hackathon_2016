@@ -6,7 +6,7 @@ jQuery.ajax({
     dataType: 'json',
     data: {},
     success: function (data) {
-        console.log(data);
+        //console.log(data);
         username = data.user_name;
     },
     error: function(){
@@ -36,7 +36,7 @@ function user_location() {
                 dataType: 'json',
                 data: {},
                 success: function (data) {
-                    console.log('location updated');
+                    //console.log('location updated');
                 },
                 error: function(){
                     console.log('failed to update location');
@@ -88,20 +88,20 @@ $("#question-form").submit(function(){
             dataType: 'json',
             data: {},
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 if(!jQuery.isEmptyObject(data)){
                     appearin = data.appearin;
                     question_num = data.question_number;
                     $('#question h1');
                     question_id = data.id;
-                    console.log(question_id);
+                    //console.log(question_id);
                     jQuery.ajax({
                         url: 'questions.json',
                         type: 'GET',
                         dataType: 'json',
                         data: {},
                         success: function (data) {
-                            console.log(data[question_num]);
+                            //console.log(data[question_num]);
                             $('#intro').hide();
                             $('#question h1').text(data[question_num]['question'] + '...');
                             $('.answer-0').addClass('twa-'+data[question_num]['answers'][0]);
@@ -134,14 +134,50 @@ $("#question-form").submit(function(){
 $('.answers a').click(function(){
     var answer_num = $(this).data('answer');
     $('.answers a').hide();
-    console.log('api/index.php?user='+username+'&question='+question_id+'&answer='+answer_num+'method=answerquestion');
+    $('#question h1').hide();
+   // console.log('api/index.php?user='+username+'&question='+question_id+'&answer='+answer_num+'&method=answerquestion');
     jQuery.ajax({
-        url: 'api/index.php?user='+username+'&question='+question_id+'&answer='+answer_num+'method=answerquestion',
+        url: 'api/index.php?user='+username+'&question='+question_id+'&answer='+answer_num+'&method=answerquestion',
         type: 'GET',
         dataType: 'json',
         data: {},
         success: function (data) {
             console.log(data);
+            
+            window.setInterval(function(){
+                jQuery.ajax({
+                    url: 'api/index.php?method=getquestion&question='+question_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {},
+                    success: function (data) {
+                        console.log(data);
+                        //username = data.user_name;
+                        
+                        var dataarray = _.toArray(data.answers);
+                        var answer_1 = dataarray[0];
+                        var answer_2 = dataarray[1];
+                        if(answer_1 !== null && answer_2!== null){
+                            if(answer_1 == answer_2){
+                                alert('MATCH!');
+                                window.open(data.appearin);
+                            }
+                            else {
+                                $('#question').hide();
+                                $('#question h1').text('');
+                                $('#intro').show();
+                            }
+                        }
+                    },
+                    error: function(){
+                        console.log('failed to find answers');
+                    },
+                    complete: function(){
+                        //console.log('done');
+                    }
+                });
+            }, 1000);
+            
         },
         error: function(){
             console.log('failed to answer question');
