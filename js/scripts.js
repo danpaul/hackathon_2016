@@ -100,10 +100,10 @@ $("#question-form").submit(function(){
                             console.log(data[question_num]);
                             $('#intro').hide();
                             $('#question h1').text(data[question_num]['question'] + '...');
-                            $('.answer-0').addClass('twa-'+data[question_num]['answers'][0]);
-                            $('.answer-1').addClass('twa-'+data[question_num]['answers'][1]);
-                            $('.answer-2').addClass('twa-'+data[question_num]['answers'][2]);
-                            $('.answer-3').addClass('twa-'+data[question_num]['answers'][3]);
+                            $('.answer-0').addClass('twa-'+data[question_num]['answers'][0]).data('question-number',question_num);
+                            $('.answer-1').addClass('twa-'+data[question_num]['answers'][1]).data('question-number',question_num);
+                            $('.answer-2').addClass('twa-'+data[question_num]['answers'][2]).data('question-number',question_num);
+                            $('.answer-3').addClass('twa-'+data[question_num]['answers'][3]).data('question-number',question_num);
                             $('#question').show();
                         },
                         error: function(){
