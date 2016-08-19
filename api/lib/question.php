@@ -27,6 +27,9 @@ function question_user_get(&$users, $user, &$user_questions, &$questions, $quest
 
 	if( !$matched_user ){ return new stdClass; }
 
+// var_dump($matched_user['user_name']);
+// die();
+
 	// create a question
 	$question = array();
 
@@ -48,10 +51,20 @@ function question_user_get(&$users, $user, &$user_questions, &$questions, $quest
 	$question['match'] = null;
 	$question['appearin'] = 'https://appear.in/'. helpers_generate_random_string();
 
+// var_dump($question);
+// die();
+
+// var_dump($matched_user['user_name']);
+// die();
+
 	// save question
 	$questions[$question_id] = $question;
+// var_dump($questions);
+// die();
 
 	data_set('question', $questions);
+
+// die();
 
 	// pause both users
 	$users[$user]['paused'] = true;
@@ -69,5 +82,4 @@ function question_create(&$user_questions, &$questions, $question_copy){
 	$random_question = rand(0, ($number_of_questions - 1));
 
 	$question['question_number'] = $random_question;
-
 }

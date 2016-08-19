@@ -63,4 +63,14 @@ if( $method === 'create' ){
 
 	user_unpause($users, $user);
 	echo json_encode(new stdClass);
+// /api/index.php?method=getquestion&question=...
+} elseif( $method === 'getquestion' ){
+	if( empty($_GET['question']) ){
+		echo json_encode(array('error' => 'Missing question ID'));
+		return;
+	}
+	echo(json_encode($questions[$_GET['question']]));
+// /api/index.php?user=...&question=...&answer=....method=answerQuestion&question=...
+} elseif( $method === 'answerquestion' ){
+	
 }
