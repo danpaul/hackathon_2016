@@ -29,7 +29,11 @@ function question_user_get(&$users, $user, &$user_questions, &$questions, $quest
 
 	// create a question
 	$question = array();
-	
+
+// TODO:
+// add radius check
+// add check if users already answered
+
 	$question_id = helpers_generate_random_string();
 	$number_of_questions = count($question_copy);
 	$random_question = rand(0, ($number_of_questions - 1));

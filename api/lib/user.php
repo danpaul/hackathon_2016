@@ -37,4 +37,7 @@ function user_update_position(&$user_array, $user, $lat, $long){
 	data_set('user', $clean_array);
 }
 
-// function user_clean_and_set()
+function user_unpause(&$user_array, &$user_name){
+	$user_array[$user_name]['paused'] = false;
+	data_set('user', $user_array);
+}

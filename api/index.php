@@ -36,7 +36,7 @@ if( $method === 'create' ){
 	user_update_position($users, $user, $_GET['lat'], $_GET['long']);
 
 	echo json_encode(new stdClass);
-// /api/index.php?method=hasquestion&user=BVweTaBQZm
+// /api/index.php?method=hasquestion&user=...
 } elseif( $method === 'hasquestion' ){
 
 	$user = $_GET['user'];
@@ -54,4 +54,13 @@ if( $method === 'create' ){
 	// TODO
 	// clear questions on unpause
 	// update user object on unpause
+	$user = $_GET['user'];
+
+	if( empty($users) || empty($users[$user]) ){
+		echo json_encode(array('error' => 'Could not find user, please refresh!'));
+		return;
+	}
+
+	user_unpause($users, $user);
+	echo json_encode(new stdClass);
 }
