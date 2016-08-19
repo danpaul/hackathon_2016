@@ -132,7 +132,7 @@ $("#question-form").submit(function(){
     return false;
 });
 
-
+appearin_popped = false;
 
 //submit answers
 $('.answers a').click(function(){
@@ -162,7 +162,8 @@ $('.answers a').click(function(){
                         var answer_1 = dataarray[0];
                         var answer_2 = dataarray[1];
                         if(answer_1 !== null && answer_2!== null){
-                            if(answer_1 == answer_2){
+                            if(answer_1 == answer_2 && appearin_popped == false){
+                                appearin_popped = true;
                                 console.log('MATCH!');
                                 window.open(data.appearin);
                             }
