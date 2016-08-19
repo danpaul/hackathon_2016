@@ -10,10 +10,10 @@ jQuery.ajax({
         username = data.user_name;
     },
     error: function(){
-        console.log('fail');
+        console.log('failed to create user');
     },
     complete: function(){
-        console.log('done');
+        //console.log('done');
     }
 });
 
@@ -31,18 +31,18 @@ function user_location() {
             $('input#lat').val(user_lat);
             $('input#long').val(user_long);
             jQuery.ajax({
-                url: '/api/index.php?method=update&user='+username+'&long='+user_long+'&lat='+user_lat,
+                url: 'api/index.php?method=update&user='+username+'&long='+user_long+'&lat='+user_lat,
                 type: 'GET',
                 dataType: 'json',
                 data: {},
                 success: function (data) {
-                    console.log(data);
+                    console.log('location updated');
                 },
                 error: function(){
-                    console.log('fail');
+                    console.log('failed to update location');
                 },
                 complete: function(){
-                    console.log('done');
+                    //console.log('done');
                 }
             });
         }, function() {
