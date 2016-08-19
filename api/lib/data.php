@@ -1,16 +1,6 @@
 <?php
 
-
 $DATA_PATH = dirname(__FILE__). '/../data';
-
-// $test = array('a' => 'bar');
-
-// $result = file_put_contents(($data_path. '/test.json'), json_encode($test));
-
-// $contents = json_decode(file_get_contents($data_path. '/test.json'), TRUE);
-
-// var_dump($contents);
-// die();
 
 function data_get($stor_name){
 	$path = data_get_path($stor_name);
