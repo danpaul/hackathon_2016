@@ -79,6 +79,7 @@ function poll_for_question(){
 appearin = '';
 question = '';
 question_id = '';
+isPaused = false;
 $("#question-form").submit(function(){
     $('#form-overlay').fadeIn();
     window.setInterval(function(){
@@ -89,11 +90,12 @@ $("#question-form").submit(function(){
             data: {},
             success: function (data) {
                 //console.log(data);
-                if(!jQuery.isEmptyObject(data)){
+                if(!jQuery.isEmptyObject(data) && isPaused == false){
                     appearin = data.appearin;
                     question_num = data.question_number;
                     $('#question h1');
                     question_id = data.id;
+                    isPaused = true;
                     //console.log(question_id);
                     jQuery.ajax({
                         url: 'questions.json',
@@ -130,6 +132,8 @@ $("#question-form").submit(function(){
     return false;
 });
 
+
+
 //submit answers
 $('.answers a').click(function(){
     var answer_num = $(this).data('answer');
@@ -163,9 +167,26 @@ $('.answers a').click(function(){
                                 window.open(data.appearin);
                             }
                             else {
-                                $('#question').hide();
-                                $('#question h1').text('');
-                                $('#intro').show();
+                                
+                                
+                                jQuery.ajax({
+                                    url: 'api/index.php?method=unpause&user='+username,
+                                    type: 'GET',
+                                    dataType: 'json',
+                                    data: {},
+                                    success: function (data) {
+                                        $('#question').hide();
+                                        $('#question h1').text('');
+                                        $('#intro').show();
+                                        isPaused = false;
+                                    },
+                                    error: function(){
+                                        console.log('failed to create user');
+                                    },
+                                    complete: function(){
+                                        //console.log('done');
+                                    }
+                                });
                             }
                         }
                     },
