@@ -7,7 +7,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Jen B</title>
+	<title>Randoji</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 	<link rel="shortcut icon" href="img/favicon.ico" />
 	<link rel="apple-touch-icon" sizes="114x114" href="img/appletouch-114x114.jpg" />
@@ -19,11 +19,19 @@
 
 <body>
     
-    
+    <div id="wrapper">
+        <h1>You're a Loser</h1>
+        <p>Make a friend and stop being lame.</p>
+        <form id="question-form" name="question-form">
+            <input type="hidden" name="lat" id="lat" value="" />
+            <input type="hidden" name="long" id="long" value="" />
+            <input type="submit" name="submit" id="submit" value="Get me a question!" />
+        </form>
+    </div>
     
     <script type='text/javascript' src='js/vendor/jquery.form.js'></script>
     <script type='text/javascript' src='js/vendor/jquery.validate.min.js'></script>
-    <script type='text/javascript' src='js/scripts.js'></script>
+    <script type='text/javascript' src='js/scripts.js?v=<?php echo round(microtime(true) * 1000); ?>'></script>
 </body>
 
 </html>
