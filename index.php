@@ -1,8 +1,8 @@
 <?php
-    // if($_SERVER['HTTP_HOST'] !== 'localhost' && $_SERVER["HTTP_X_FORWARDED_PROTO"] != "https"){
-    //     header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
-    //     exit();
-    // }
+    if($_SERVER['HTTP_HOST'] !== 'localhost' && $_SERVER["HTTP_X_FORWARDED_PROTO"] != "https"){
+        header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7" lang="en" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
